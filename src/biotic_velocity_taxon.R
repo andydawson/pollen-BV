@@ -79,3 +79,23 @@ ggplot(bv, aes(x=as.factor(timeFrom), y=centroidVelocity)) +
 ggplot(bv, aes(x=centroidVelocity)) + 
   geom_histogram() 
 
+
+ggplot(bv, aes(x=as.factor(timeFrom), y=centroidLat)) + 
+  geom_boxplot() + 
+  theme(axis.text.x = element_text(angle=90,hjust=1))
+
+
+ggplot(bv, aes(x=centroidLong, y=centroidLat)) + 
+  geom_point()
+
+
+# let's plot the  measure
+# which quantifies movement in the location of
+ggplot(bv, aes(x=as.factor(timeFrom), y=nsCentroidVelocity)) + 
+  geom_boxplot() + 
+  theme(axis.text.x = element_text(angle=90,hjust=1))
+
+
+ggplot(bv, aes(x=centroidVelocity)) + 
+  geom_histogram() 
+
