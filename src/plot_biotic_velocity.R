@@ -1,19 +1,7 @@
-#
-#setwd('C:/Users/abrow/Documents/pg-pollen')
-require(tidyr)
-require(ggplot2)
-# require(rasterVis)
-# require(fields)
-require(rgdal)
-require(raster)
-require(enmSdm)
-require(rgeos)
-# require(sp)
-# require(dplyr)
-# require(holoSimCell)
-# require(gridExtra)
-# require(ggrepel)
-# require(parallel)
+library(tidyr)
+library(ggplot2)
+library(raster)
+library(dplyr)
 library(reshape2)
 
 ######################################################################################################################
