@@ -24,9 +24,9 @@ preds <- readRDS('output/polya-gamma-predictions_4.1_overdispersed.RDS')
 taxa = readRDS("data/taxa_4.1.RDS")
 
 # read raster masks (provides masks for spatial domain/resolution of genetic + ENM data)
-stack <- stack('data/map-data/study_region_daltonIceMask_lakesMasked_linearIceSheetInterpolation.tif')
-proj <- proj4string(stack)
-
+# stack <- stack('data/map-data/study_region_daltonIceMask_lakesMasked_linearIceSheetInterpolation.tif')
+# proj <- proj4string(stack)
+stack = readRDS('data/map-data/study_region_mask_glacierNA.RDS')
 
 #tx = 1  #taxon number
 
@@ -147,26 +147,26 @@ saveRDS(bvs, paste0('output/',taxa[tx],'_bvs_n200_v4.1.RDS'))
 }
 
 
-#do some plotting
-#first make a mega dataset containing all taxa
-abv  = NULL #going to increment rows in a df, slow but not many to do
-for (tx in 1:dim(preds[["pi"]])[3])
-{
-    bv = readRDS(paste0('output/',taxa[tx],'_bvs_n200_v4.1.RDS'))
-    bv$taxon=taxa[tx]
-    abv = rbind(abv,bv)
-}
-
-pdf ("figures/biotic_velocities.pdf",width=12,height=12)
-
-ggplot(abv, aes(x=as.factor(timeFrom), y=centroidVelocity)) + geom_boxplot() + facet_wrap(~taxon) + theme(axis.text.x = element_text(angle=90,hjust=1))
-
-
-ggplot(abv, aes(x=as.factor(timeFrom), y=quantile_quant0p05)) + geom_boxplot() + facet_wrap(~taxon) + theme(axis.text.x = element_text(angle=90,hjust=1))
-
-ggplot(abv, aes(x=as.factor(timeFrom), y=quantile_quant0p95)) + geom_boxplot() + facet_wrap(~taxon) + theme(axis.text.x = element_text(angle=90,hjust=1))
-
-dev.off()
+# #do some plotting
+# #first make a mega dataset containing all taxa
+# abv  = NULL #going to increment rows in a df, slow but not many to do
+# for (tx in 1:dim(preds[["pi"]])[3])
+# {
+#     bv = readRDS(paste0('output/',taxa[tx],'_bvs_n200_v4.1.RDS'))
+#     bv$taxon=taxa[tx]
+#     abv = rbind(abv,bv)
+# }
+# 
+# pdf ("figures/biotic_velocities.pdf",width=12,height=12)
+# 
+# ggplot(abv, aes(x=as.factor(timeFrom), y=centroidVelocity)) + geom_boxplot() + facet_wrap(~taxon) + theme(axis.text.x = element_text(angle=90,hjust=1))
+# 
+# 
+# ggplot(abv, aes(x=as.factor(timeFrom), y=quantile_quant0p05)) + geom_boxplot() + facet_wrap(~taxon) + theme(axis.text.x = element_text(angle=90,hjust=1))
+# 
+# ggplot(abv, aes(x=as.factor(timeFrom), y=quantile_quant0p95)) + geom_boxplot() + facet_wrap(~taxon) + theme(axis.text.x = element_text(angle=90,hjust=1))
+# 
+# dev.off()
 
 
 
